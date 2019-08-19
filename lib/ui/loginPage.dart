@@ -111,7 +111,7 @@ class SubmitBtnWidget extends StatelessWidget {
       child: RaisedButton(
         shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
         child: Text(
-          Constants.LOGIN_BTN,
+          Constants.LOGIN,
           textScaleFactor: 1.5,
         ),
         color: Colors.lightBlue,

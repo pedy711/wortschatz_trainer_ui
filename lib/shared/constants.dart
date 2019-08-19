@@ -16,12 +16,15 @@ class Constants{
   static final String APP_NAME_PERSIAN = "همراه";
   static final int    APP_VERSION = 1;
   static final String GET_STARTED_BTN = "بزن بریم";
-  static final String BECOME_A_MEMBER = "عضوم کن 🐣";
+  static final String BECOME_A_MEMBER = "Mit email anmelden 🐣";
   static final String EMAIL_TEXT = "ایمیل";
   static final String PASSWORD_TEXT = "کلمه عبور";
+  static final String REGISTER = "Anmelden";
+  static final String REGISTER_OR_LOGIN = "Melde dich an oder einloggen";
+  static final String LOGIN_WITH_FACEBOOK = "Mit Facebook anmelden";
   static final String REPEAT_PASSWORD_TEXT = "تکرار کلمه عبور";
-  static final String LOGIN_BTN = "ورود";
-  static final String ALREADY_A_MEMBER_TEXT = "عضو هستم 🤠";
+  static final String LOGIN = "Einloggen";
+  static final String ALREADY_A_MEMBER_TEXT = "Bist du schon mitglied?";
   static final String NEXT_TEXT = "بعدی";
   static final String SIGN_UP = "ثبت نام";
   static final String SELF_SUMMARY_TITLE_TEXT = "راجع به خودت بگو";
@@ -44,6 +47,7 @@ class Constants{
   static final String ADD_SOME_GREAT_PHOTOS = "چند تا عکس عالی اضافه کن";
   static final String SHORT_SUMMARY = "خودت رو به طور خلاصه معرفی کن";
   static final String SHORT_SUMMARY_Label = "برای مثال، بهترین دوستت چه طور توصیفت می کنه؟";
+
 
 
 

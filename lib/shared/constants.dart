@@ -16,9 +16,9 @@ class Constants{
   static final String APP_NAME_PERSIAN = "همراه";
   static final int    APP_VERSION = 1;
   static final String GET_STARTED_BTN = "بزن بریم";
-  static final String BECOME_A_MEMBER = "Mit email anmelden 🐣";
-  static final String EMAIL_TEXT = "ایمیل";
-  static final String PASSWORD_TEXT = "کلمه عبور";
+  static final String BECOME_A_MEMBER = "Mit email anmelden";
+  static final String EMAIL_TEXT = "Email";
+  static final String PASSWORD_TEXT = "Password";
   static final String REGISTER = "Anmelden";
   static final String REGISTER_OR_LOGIN = "Melde dich an oder einloggen";
   static final String LOGIN_WITH_FACEBOOK = "Mit Facebook anmelden";
@@ -26,7 +26,7 @@ class Constants{
   static final String LOGIN = "Einloggen";
   static final String ALREADY_A_MEMBER_TEXT = "Bist du schon mitglied?";
   static final String NEXT_TEXT = "بعدی";
-  static final String SIGN_UP = "ثبت نام";
+  static final String SIGN_UP = "Sign Up";
   static final String SELF_SUMMARY_TITLE_TEXT = "راجع به خودت بگو";
   static final String SELF_SUMMARY_TEXT = "که ما بتونیم افرادی که دوست داری برات پیدا کنیم.";
   static final String FIRST_NAME_TEXT = "نام کوچک";

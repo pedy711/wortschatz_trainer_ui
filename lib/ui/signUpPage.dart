@@ -74,7 +74,7 @@ class _SignUpPage extends State<SignUpPage> {
   RaisedButton buildRaisedButton() {
     return RaisedButton(
         shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(30.0)),
+            borderRadius: new BorderRadius.circular(10.0)),
         padding:
             EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
         child: Text(

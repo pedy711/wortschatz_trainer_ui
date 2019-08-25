@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wortschatz_trainer/ui/homePage.dart';
+import 'package:wortschatz_trainer/ui/loginPage.dart';
 
 
 void main() => runApp(new MyApp());
@@ -7,7 +8,7 @@ void main() => runApp(new MyApp());
 final ThemeData _themeData = new ThemeData(
   brightness: Brightness.light,
   primarySwatch: Colors.blue,
-  accentColor: Colors.brown
+  accentColor: Colors.brown,
 );
 
 class MyApp extends StatelessWidget {
@@ -18,6 +19,6 @@ class MyApp extends StatelessWidget {
       theme: _themeData,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: new HomePage());
+      home: new LoginPage());
   }
 }

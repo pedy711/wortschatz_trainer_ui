@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wortschatz_trainer/custom_widgets/TextBoxWidget.dart';
 import 'package:wortschatz_trainer/models/user.dart';
 import 'package:wortschatz_trainer/ui/introductionPage.dart';
 import 'package:wortschatz_trainer/shared/constants.dart';
@@ -22,12 +23,22 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.title;
 
-    emailController.text = "pedram.khoshdani@gmail.com";
-    passwordController.text = "12345678";
+/*     emailController.text = "pedram.khoshdani@gmail.com";
+    passwordController.text = "12345678"; */
 
     var emailTextField = Padding(
         padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-        child: TextField(
+        child: TextFieldWidget(
+          text: Constants.EMAIL_TEXT,
+          controller: emailController,
+          textStyle: textStyle,
+          keyboardType: TextInputType.emailAddress,
+          onChanged: (String string) {
+            setState(() {
+              email = string;
+            });
+          })
+         /* TextField(
           controller: emailController,
           decoration: InputDecoration(
               labelText: Constants.EMAIL_TEXT,
@@ -40,12 +51,23 @@ class _LoginPageState extends State<LoginPage> {
               email = string;
             });
           },
-        ));
-
+        ) */
+        );
 
     var passwordTextField = Padding(
         padding: EdgeInsets.only(bottom: 10.0),
-        child: TextField(
+        child: TextFieldWidget(
+          text: Constants.PASSWORD_TEXT,
+          controller: passwordController,
+          textStyle: textStyle,
+          // obscureText: true,
+          keyboardType: TextInputType.text,
+          onChanged: (String string) {
+            setState(() {
+              password = string;
+            });
+          })
+        /* TextField(
           controller: passwordController,
           obscureText: true,
           decoration: InputDecoration(
@@ -59,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
               password = string;
             });
           },
-        ));
+        ) */);
 
     final forgotLabel = FlatButton(
       child: Text(
@@ -70,12 +92,12 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     return new Scaffold(
-      backgroundColor: Colors.tealAccent,
-        body: Center(
-      child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 24.0, right: 24.0),
-          children: <Widget>[
+      backgroundColor: Colors.white,
+      body: Center(
+          child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.only(left: 24.0, right: 24.0),
+              children: <Widget>[
             LogoImageWidget(),
             SizedBox(height: 48.0),
             emailTextField,
@@ -84,9 +106,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 24.0),
             SubmitBtnWidget(),
             forgotLabel
-          ]
-
-          )),
+          ])),
     );
   }
 }
@@ -109,7 +129,8 @@ class SubmitBtnWidget extends StatelessWidget {
     var button = Container(
       margin: EdgeInsets.only(top: 25.0),
       child: RaisedButton(
-        shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(30.0)),
         child: Text(
           Constants.LOGIN,
           textScaleFactor: 1.5,

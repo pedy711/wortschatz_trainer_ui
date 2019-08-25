@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:wortschatz_trainer/custom_widgets/RaisedButtonWidget.dart';
 import 'package:wortschatz_trainer/ui/loginPage.dart';
 import 'package:wortschatz_trainer/ui/signUpPage.dart';
 import 'package:wortschatz_trainer/shared/constants.dart';
 
 class HomePage extends StatelessWidget {
+  final double roundedCorner = 10;
+
   @override
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.center,
-        color: Colors.red[50],
+        color: Colors.white,
         child: Padding(
             padding: EdgeInsets.all(20),
             child: Column(
@@ -20,79 +23,77 @@ class HomePage extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(Constants.REGISTER,
-                        // textScaleFactor: 1.5,
-                        style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontSize: 30.0,
-                            decoration: TextDecoration.none,
-                            fontFamily: 'Roboto-Thin')),
+                    buildRegisterTxt(),
                     Padding(
-                      padding: EdgeInsets.only(top: 20.0, bottom: 50.0),
-                      child: Text(Constants.REGISTER_OR_LOGIN,
-                          // textScaleFactor: 1.5,
-                          style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 25.0,
-                              decoration: TextDecoration.none,
-                              fontFamily: 'Roboto-Thin')),
+                      padding: EdgeInsets.only(top: 20.0, bottom: 25.0),
+                      child: buildRegisterOrLoginTxt(),
                     ),
                   ],
                 ),
-                RaisedButton(
-                    // shape: new RoundedRectangleBorder(
-                    //     borderRadius: new BorderRadius.circular(30.0)),
-                    padding: EdgeInsets.only(
-                        left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
-                    child: Text(
-                      Constants.BECOME_A_MEMBER,
-                      textScaleFactor: 1.5,
-                      // style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.blueAccent,
-                    onPressed: () => navigateToSignUpPage(context)),
-                Padding(
-                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                ),
-                RaisedButton(
-                    // shape: new RoundedRectangleBorder(
-                    //     borderRadius: new BorderRadius.circular(30.0)),
-                    padding: EdgeInsets.only(
-                        left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
-                    child: Text(
-                      Constants.ALREADY_A_MEMBER_TEXT,
-                      textScaleFactor: 1.5,
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.blueAccent,
-                    onPressed: () => navigateToLoginPage(context)),
+                buildRegisterWithEmailBtn(context),
+                buildFacebookLoginBtn(context),
                 Column(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(top: 20.0, bottom: 50.0),
-                      child: Text(Constants.ALREADY_A_MEMBER_TEXT,
-                          // textScaleFactor: 1.5,
-                          style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 25.0,
-                              decoration: TextDecoration.none,
-                              fontFamily: 'Roboto-Thin')),
-                    ),
+                      padding: EdgeInsets.only(top: 40.0, bottom: 0.0),
+                      child: buildMemberQuestionTxt(),
+                    )
                   ],
                 ),
-                RaisedButton(
-                    padding: EdgeInsets.only(
-                        left: 20.0, right: 20.0, top: 5.0, bottom: 5.0),
-                    child: Text(
-                      Constants.LOGIN,
-                      textScaleFactor: 1.5,
-                    ),
-                    textColor: Colors.white,
-                    color: Colors.blueAccent,
-                    onPressed: () => navigateToLoginPage(context))
+                buildRaisedButton(context)
               ],
             )));
+  }
+
+  Text buildRegisterTxt() {
+    return Text(Constants.REGISTER,
+        // textScaleFactor: 1.5,
+        style: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 30.0,
+            decoration: TextDecoration.none,
+            fontFamily: 'Roboto-Thin'));
+  }
+
+  Text buildRegisterOrLoginTxt() {
+    return Text(Constants.REGISTER_OR_LOGIN,
+        // textScaleFactor: 1.5,
+        style: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 25.0,
+            decoration: TextDecoration.none,
+            fontFamily: 'Roboto-Thin'));
+  }
+
+  Widget buildRegisterWithEmailBtn(BuildContext context) {
+    return RaisedButtonWidget(
+        btnTxt: Constants.BECOME_A_MEMBER,
+        onPressed: () => navigateToSignUpPage(context),
+        color: Colors.red[800]);
+  }
+
+  Widget buildFacebookLoginBtn(BuildContext context) {
+    return RaisedButtonWidget(
+        btnTxt: Constants.LOGIN_WITH_FACEBOOK,
+        onPressed: () => navigateToLoginPage(context),
+        color: Colors.blue[900]);
+  }
+
+  Text buildMemberQuestionTxt() {
+    return Text(Constants.ALREADY_A_MEMBER_TEXT,
+        // textScaleFactor: 1.5,
+        style: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 20.0,
+            decoration: TextDecoration.none,
+            fontFamily: 'Roboto-Thin'));
+  }
+
+  Widget buildRaisedButton(BuildContext context) {
+    return RaisedButtonWidget(
+        btnTxt: Constants.LOGIN,
+        onPressed: () => navigateToLoginPage(context),
+        color: Colors.red[800]);
   }
 
   void navigateToLoginPage(BuildContext context) async {

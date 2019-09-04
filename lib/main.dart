@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wortschatz_trainer/locale/locales.dart';
+import 'package:wortschatz_trainer/ui/cardsPage.dart';
 import 'package:wortschatz_trainer/ui/homePage.dart';
 import 'package:wortschatz_trainer/ui/loginPage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -32,6 +33,6 @@ class MyApp extends StatelessWidget {
       theme: _themeData,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: new LoginPage());
+      home: new CardsPage());
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:wortschatz_trainer/models/FlashCard.dart';
 import 'package:wortschatz_trainer/models/communication/dataSourceResponse.dart';
 import 'package:wortschatz_trainer/models/communication/dsRequest.dart';
 import 'package:wortschatz_trainer/models/communication/dsResponse.dart';
@@ -19,36 +20,38 @@ class CardsPage extends StatefulWidget {
 class _CardsPage extends State<CardsPage> {
   PageView _pageView = PageView();
   PageController _pageController = PageController();
-  List<User> _users = new List<User>();
+  List<FlashCard> _cards = new List<FlashCard>();
   List<Padding> cards = new List<Padding>();
   int _total = 0;
   var cachedData = new Map<int, User>();
 
   @override
   void initState() {
-    getFirst50Cards().then((users) {
+    /* getFirst50Cards().then((users) {
       setState(() {
         _users = users;
       });
-    });
+    }); */
+    for (var i = 0; i < 10; i++) {
+      FlashCard card = new FlashCard('Buch', 'Book');
+      _cards.add(card);
+    }
     super.initState();
   }
 
-  Padding createCard(String firstName, String lastName, String age) {
+  Padding createCard(String word, String translation) {
     return Padding(
       padding: EdgeInsets.all(10),
       child: Card(
         child: ListView(
           children: <Widget>[
-            UserImage(),
+            // UserImage(),
             Padding(
               padding: EdgeInsets.all(10),
               child: Column(
                 children: <Widget>[
-                  createBasicInfoSection(firstName, lastName, age),
+                  createBasicInfoSection(word, translation),
                   Divider(),
-                  createMySelfSummary(
-                      "self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here...self summary text goes here..."),
                 ],
               ),
             )
@@ -58,21 +61,21 @@ class _CardsPage extends State<CardsPage> {
     );
   }
 
-  Widget createBasicInfoSection(String firstName, String lastName, String age) {
+  Widget createBasicInfoSection(String word, String translation) {
     return Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        createMatchingIcon(),
+        // createMatchingIcon(),
         Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "$firstName $lastName ($age)",
+              "$word $translation",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              textDirection: TextDirection.rtl,
+              // textDirection: TextDirection.rtl,
             ),
             Text(
               "North East Dallas",
@@ -97,13 +100,13 @@ class _CardsPage extends State<CardsPage> {
 
     _pageView = new PageView.builder(
       controller: _pageController,
-      itemCount: _users.length,
+      itemCount: _cards.length,
       itemBuilder: (BuildContext context, int index) {
-        if (index < _users.length) {
+        if (index < _cards.length) {
           return createCard(
-              _users.elementAt(index).firstName,
-              _users.elementAt(index).lastName,
-              _users.elementAt(index).age.toString());
+              _cards.elementAt(index).word,
+              _cards.elementAt(index).translation);
+              // _cards.elementAt(index).age.toString());
 //          return cards != null ? cards : Padding(child: Text("Loading"));
         } else {
           User user = _getData(index);

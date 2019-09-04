@@ -2,6 +2,10 @@ import 'package:wortschatz_trainer/models/basic/customLocation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
+// useful commands to generate a file like  'user.g.dart':
+
+// flutter pub run build_runner build --delete-conflicting-outputs
+
 
 @JsonSerializable()
 class User{

@@ -6,6 +6,8 @@ import 'package:wortschatz_trainer/ui/introductionPage.dart';
 import 'package:wortschatz_trainer/shared/constants.dart';
 import 'package:wortschatz_trainer/shared/dbhelper.dart';
 
+import 'cardsPage.dart';
+
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 
@@ -135,15 +137,15 @@ class LogoImageWidget extends StatelessWidget {
   }
 }
 
-void navigateToIntroductionPage(BuildContext context) async {
+void navigateToCardsPage(BuildContext context) async {
   bool result = await Navigator.push(
-      context, MaterialPageRoute(builder: (context) => IntroductionPage()));
+      context, MaterialPageRoute(builder: (context) => CardsPage()));
 }
 
 void submit(BuildContext context) {
   // try to login the user
 
-  navigateToIntroductionPage(context);
+  navigateToCardsPage(context);
   /*var alert = AlertDialog(
       title: Text("Submitted"),
       content: Text("Thanks for visiting us"),

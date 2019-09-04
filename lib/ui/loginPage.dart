@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wortschatz_trainer/custom_widgets/RaisedButtonWidget.dart';
 import 'package:wortschatz_trainer/custom_widgets/TextBoxWidget.dart';
 import 'package:wortschatz_trainer/models/user.dart';
 import 'package:wortschatz_trainer/ui/introductionPage.dart';
@@ -18,27 +19,29 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
+  BuildContext _context;
 
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle = Theme.of(context).textTheme.title;
 
+    this._context = context;
 /*     emailController.text = "pedram.khoshdani@gmail.com";
     passwordController.text = "12345678"; */
 
     var emailTextField = Padding(
         padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: TextFieldWidget(
-          text: Constants.EMAIL_TEXT,
-          controller: emailController,
-          textStyle: textStyle,
-          keyboardType: TextInputType.emailAddress,
-          onChanged: (String string) {
-            setState(() {
-              email = string;
-            });
-          })
-         /* TextField(
+            text: Constants.EMAIL_TEXT,
+            controller: emailController,
+            textStyle: textStyle,
+            keyboardType: TextInputType.emailAddress,
+            onChanged: (String string) {
+              setState(() {
+                email = string;
+              });
+            })
+        /* TextField(
           controller: emailController,
           decoration: InputDecoration(
               labelText: Constants.EMAIL_TEXT,
@@ -57,16 +60,16 @@ class _LoginPageState extends State<LoginPage> {
     var passwordTextField = Padding(
         padding: EdgeInsets.only(bottom: 10.0),
         child: TextFieldWidget(
-          text: Constants.PASSWORD_TEXT,
-          controller: passwordController,
-          textStyle: textStyle,
-          // obscureText: true,
-          keyboardType: TextInputType.text,
-          onChanged: (String string) {
-            setState(() {
-              password = string;
-            });
-          })
+            text: Constants.PASSWORD_TEXT,
+            controller: passwordController,
+            textStyle: textStyle,
+            // obscureText: true,
+            keyboardType: TextInputType.text,
+            onChanged: (String string) {
+              setState(() {
+                password = string;
+              });
+            })
         /* TextField(
           controller: passwordController,
           obscureText: true,
@@ -81,7 +84,8 @@ class _LoginPageState extends State<LoginPage> {
               password = string;
             });
           },
-        ) */);
+        ) */
+        );
 
     final forgotLabel = FlatButton(
       child: Text(
@@ -104,10 +108,18 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 8.0),
             passwordTextField,
             SizedBox(height: 24.0),
-            SubmitBtnWidget(),
+            createSubmitBtn(),
+            // SubmitBtnWidget(),
             forgotLabel
           ])),
     );
+  }
+
+  createSubmitBtn() {
+    return RaisedButtonWidget(
+        btnTxt: Constants.LOGIN,
+        onPressed: () => submit(_context),
+        color: Colors.red[800]);
   }
 }
 
@@ -123,7 +135,23 @@ class LogoImageWidget extends StatelessWidget {
   }
 }
 
-class SubmitBtnWidget extends StatelessWidget {
+void navigateToIntroductionPage(BuildContext context) async {
+  bool result = await Navigator.push(
+      context, MaterialPageRoute(builder: (context) => IntroductionPage()));
+}
+
+void submit(BuildContext context) {
+  // try to login the user
+
+  navigateToIntroductionPage(context);
+  /*var alert = AlertDialog(
+      title: Text("Submitted"),
+      content: Text("Thanks for visiting us"),
+    );
+    showDialog(context: context, builder: (BuildContext context) => alert);*/
+}
+
+/* class SubmitBtnWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var button = Container(
@@ -161,4 +189,4 @@ class SubmitBtnWidget extends StatelessWidget {
     bool result = await Navigator.push(
         context, MaterialPageRoute(builder: (context) => IntroductionPage()));
   }
-}
+} */

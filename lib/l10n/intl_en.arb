@@ -1,0 +1,15 @@
+{
+    "@@last_modified": "2019-09-01T19:33:31.503867",
+    "title": "Learn German",
+    "@title": {
+      "description": "Title for the Learning German App",
+      "type": "text",
+      "placeholders": {}
+    },
+    "button": "Sign in",
+    "@button": {
+      "description": "Sign into the app",
+      "type": "text",
+      "placeholders": {}
+    }
+  }

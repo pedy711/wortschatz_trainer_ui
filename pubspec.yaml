@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   sqflite: any
   path_provider: any
   json_annotation: ^2.0.0
@@ -40,6 +42,7 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^1.0.0
   json_serializable: ^2.0.1
+  intl_translation: "^0.17.6"
 
 
 # For information on the generic Dart part of this file, see the

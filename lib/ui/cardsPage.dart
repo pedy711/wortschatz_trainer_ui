@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:wortschatz_trainer/custom_widgets/RaisedButtonWidget.dart';
 import 'package:wortschatz_trainer/models/FlashCard.dart';
 import 'package:wortschatz_trainer/models/communication/dataSourceResponse.dart';
 import 'package:wortschatz_trainer/models/communication/dsRequest.dart';
-import 'package:wortschatz_trainer/models/communication/dsResponse.dart';
 import 'package:wortschatz_trainer/models/user.dart';
 import 'package:wortschatz_trainer/shared/constants.dart';
-import 'package:http/http.dart' as http;
 
 BuildContext _context;
 const jasonCodec = const JsonCodec();
@@ -21,7 +21,7 @@ class _CardsPage extends State<CardsPage> {
   PageView _pageView = PageView();
   PageController _pageController = PageController();
   List<FlashCard> _cards = new List<FlashCard>();
-  List<Padding> cards = new List<Padding>();
+  // List<Padding> cards = new List<Padding>();
   int _total = 0;
   var cachedData = new Map<int, User>();
 
@@ -39,24 +39,137 @@ class _CardsPage extends State<CardsPage> {
     super.initState();
   }
 
-  Padding createCard(String word, String translation) {
-    return Padding(
-      padding: EdgeInsets.all(10),
-      child: Card(
-        child: ListView(
-          children: <Widget>[
-            // UserImage(),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
+  @override
+  Widget build(BuildContext context) {
+    _context = context;
+
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: ListView(
+            padding: EdgeInsets.only(
+              top: 50,
+            ),
+            children: <Widget>[
+              Center(
+                  child: Padding(
+                padding: EdgeInsets.only(bottom: 40),
+                child: Text(Constants.TODAY_WORD_LIST,
+                    // textScaleFactor: 1.5,
+                    style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 30.0,
+                        decoration: TextDecoration.none,
+                        fontFamily: 'Roboto-Thin')),
+              )),
+              Column(
                 children: <Widget>[
-                  createBasicInfoSection(word, translation),
-                  Divider(),
+                  buildFittedBox(),
+                  buildFittedBox(),
+                  buildFittedBox(),
+                  buildFittedBox(),
+                  buildFittedBox(),
                 ],
               ),
-            )
-          ],
-        ),
+              Padding(
+                padding: EdgeInsets.all(20),
+                child: RaisedButtonWidget(
+                    btnTxt: Constants.BECOME_A_MEMBER,
+                    // onPressed: () => navigateToSignUpPage(context),
+                    color: Colors.red[800]),
+              )
+            ],
+          ),
+        ));
+  }
+
+  FittedBox buildFittedBox() {
+    return FittedBox(
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          createCard("Buch", "Book"),
+          createCard("Wasser", "Water"),
+        ],
+      ),
+    );
+  }
+
+  Card createCard(String word, String translation) {
+    return Card(
+      color: Colors.yellow,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          // UserImage(),
+          Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              "$word",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+              // textDirection: TextDirection.rtl,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+              Transform.scale(
+                  scale: 2.0,
+                  child: Checkbox(
+                    value: false,
+                    onChanged: (bool value) {},
+                  )),
+            ],
+          )
+        ],
       ),
     );
   }
@@ -73,14 +186,14 @@ class _CardsPage extends State<CardsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "$word $translation",
+              "$word",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               // textDirection: TextDirection.rtl,
             ),
-            Text(
+            /*  Text(
               "North East Dallas",
               textDirection: TextDirection.rtl,
-            )
+            ) */
           ],
         ),
       ],
@@ -91,35 +204,6 @@ class _CardsPage extends State<CardsPage> {
     return Icon(
       Icons.stars,
       size: 50,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    _context = context;
-
-    _pageView = new PageView.builder(
-      controller: _pageController,
-      itemCount: _cards.length,
-      itemBuilder: (BuildContext context, int index) {
-        if (index < _cards.length) {
-          return createCard(
-              _cards.elementAt(index).word,
-              _cards.elementAt(index).translation);
-              // _cards.elementAt(index).age.toString());
-//          return cards != null ? cards : Padding(child: Text("Loading"));
-        } else {
-          User user = _getData(index);
-          return new ListTile(
-            title: new Text(user.firstName),
-          );
-        }
-      },
-    );
-
-    return new Scaffold(
-      backgroundColor: Colors.tealAccent,
-      body: _pageView,
     );
   }
 

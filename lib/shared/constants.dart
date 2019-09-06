@@ -32,6 +32,7 @@ class Constants{
   static final String FIRST_NAME_TEXT = "نام کوچک";
   static final String LAST_NAMENAME_TEXT = "نام خانوادگی";
   static final String ABOUT_YOU_TEXT = "درباره تو";
+  static final String TODAY_WORD_LIST = "Die neuen Wörter des Tages";
 
   // Introduction Page
   static final String FEMALE = "زن                                                          👩";

@@ -8,6 +8,7 @@ import 'package:wortschatz_trainer/models/communication/dataSourceResponse.dart'
 import 'package:wortschatz_trainer/models/communication/dsRequest.dart';
 import 'package:wortschatz_trainer/models/user.dart';
 import 'package:wortschatz_trainer/shared/constants.dart';
+import 'package:wortschatz_trainer/ui/flashcardPage.dart';
 
 BuildContext _context;
 const jasonCodec = const JsonCodec();
@@ -43,39 +44,40 @@ class _CardsPage extends State<CardsPage> {
   Widget build(BuildContext context) {
     _context = context;
 
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: ListView(
-            padding: EdgeInsets.only(
-              top: 50,
-            ),
-            children: <Widget>[
-              Center(
-                  child: Padding(
-                padding: EdgeInsets.only(bottom: 40),
-                child: Text(Constants.TODAY_WORD_LIST,
-                    // textScaleFactor: 1.5,
-                    style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontSize: 30.0,
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Roboto-Thin')),
-              )),
-              Column(
+    var rowsOfCards = Column(
+                    children: <Widget>[
+                      buildFittedBox(),
+                      buildFittedBox(),
+                      buildFittedBox(),
+                      buildFittedBox(),
+                      buildFittedBox(),
+                    ],
+                  );
+        return Scaffold(
+            backgroundColor: Colors.white,
+            body: Center(
+              child: ListView(
+                padding: EdgeInsets.only(
+                  top: 50,
+                ),
                 children: <Widget>[
-                  buildFittedBox(),
-                  buildFittedBox(),
-                  buildFittedBox(),
-                  buildFittedBox(),
-                  buildFittedBox(),
-                ],
-              ),
+                  Center(
+                      child: Padding(
+                    padding: EdgeInsets.only(bottom: 40),
+                    child: Text(Constants.TODAY_WORD_LIST,
+                        // textScaleFactor: 1.5,
+                        style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontSize: 30.0,
+                            decoration: TextDecoration.none,
+                            fontFamily: 'Roboto-Thin')),
+                  )),
+                 rowsOfCards,
               Padding(
                 padding: EdgeInsets.all(20),
                 child: RaisedButtonWidget(
                     btnTxt: Constants.BECOME_A_MEMBER,
-                    // onPressed: () => navigateToSignUpPage(context),
+                    onPressed: () => navigateTo(FlashCardPage()),
                     color: Colors.red[800]),
               )
             ],
@@ -266,6 +268,12 @@ class _CardsPage extends State<CardsPage> {
     return Column(
       children: <Widget>[Text("My self-summary"), Text(selfSummaryText)],
     );
+  }
+
+    void navigateTo(Widget page) async {
+    // TODO: check whether the age entered is over 18 years.
+    bool result = await Navigator.push(
+        _context, MaterialPageRoute(builder: (context) => page));
   }
 }
 

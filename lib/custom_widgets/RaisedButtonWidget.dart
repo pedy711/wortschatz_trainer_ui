@@ -6,10 +6,13 @@ class RaisedButtonWidget extends RaisedButton {
       : super(
             key: key,
             shape: const StadiumBorder(),
-            child: Text(
-              btnTxt,
-              textScaleFactor: 1.2,
-              // style: TextStyle(fontWeight: FontWeight.bold),
+            child: Padding(
+              padding: EdgeInsets.only(top: 12, bottom: 12),
+              child: Text(
+                btnTxt,
+                textScaleFactor: 1.2,
+                // style: TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             textColor: Colors.white,
             color: color ?? Colors.red[800],

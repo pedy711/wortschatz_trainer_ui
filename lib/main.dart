@@ -11,8 +11,13 @@ void main() => runApp(new MyApp());
 
 final ThemeData _themeData = new ThemeData(
   brightness: Brightness.light,
-  primarySwatch: Colors.blue,
+  primarySwatch: Colors.purple,
   accentColor: Colors.brown,
+  // textTheme: TextTheme(
+  //   body1: TextStyle(
+  //     fontSize: 24,
+  //   )
+  // )
 );
 
 class MyApp extends StatelessWidget {

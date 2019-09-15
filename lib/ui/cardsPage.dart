@@ -33,10 +33,40 @@ class _CardsPage extends State<CardsPage> {
         _users = users;
       });
     }); */
-    for (var i = 0; i < 10; i++) {
-      FlashCard card = new FlashCard('Buch', 'Book');
-      _cards.add(card);
-    }
+    // for (var i = 0; i < 10; i++) {
+    FlashCard entscheidung = new FlashCard('die Entscheidung', 'decision');
+    FlashCard spucken = new FlashCard('spucken', 'to spit');
+    FlashCard zuEndeBringen =
+        new FlashCard('etwas zu Ende bringen', 'finish something');
+    FlashCard betrunken = new FlashCard('betrunken', 'drunk');
+    FlashCard anwalt = new FlashCard('Der Anwalt', 'Lawyer');
+    FlashCard umtauschen = new FlashCard('umtauschen', 'to change');
+    FlashCard sauberMachen = new FlashCard('Sauber machen', 'to clean');
+    FlashCard richter = new FlashCard('Der Richter', 'judge');
+    FlashCard erhalten = new FlashCard('erhalten', 'to get');
+    FlashCard inNetStellen =
+        new FlashCard('Etwas ins net stellen', 'to put something in internet');
+
+    // final todos = List<FlashCard>.generate(
+    //   20,
+    //   (i) => FlashCard(
+    //     'Todo $i',
+    //     'A description of what needs to be done for Todo $i',
+    //   ),
+    // );
+
+    _cards.add(entscheidung);
+    _cards.add(spucken);
+    _cards.add(zuEndeBringen);
+    _cards.add(betrunken);
+    _cards.add(anwalt);
+    _cards.add(umtauschen);
+    _cards.add(sauberMachen);
+    _cards.add(richter);
+    _cards.add(erhalten);
+    _cards.add(inNetStellen);
+
+    // }
     super.initState();
   }
 
@@ -44,62 +74,87 @@ class _CardsPage extends State<CardsPage> {
   Widget build(BuildContext context) {
     _context = context;
 
-    var rowsOfCards = Column(
+    _pageView = new PageView(
       children: <Widget>[
-        buildFittedBox(),
-        buildFittedBox(),
-        buildFittedBox(),
-        buildFittedBox(),
-        buildFittedBox(),
+        buildListPage(),
+        buildListPage(),
       ],
+      controller: _pageController,
     );
+
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: ListView(
-            padding: EdgeInsets.only(
-              top: 50,
-            ),
-            children: <Widget>[
-              Center(
-                  child: Padding(
-                padding: EdgeInsets.only(bottom: 40),
-                child: Text(Constants.TODAY_WORD_LIST,
-                    // textScaleFactor: 1.5,
-                    style: TextStyle(
-                        color: Colors.blueGrey,
-                        fontSize: 30.0,
-                        decoration: TextDecoration.none,
-                        fontFamily: 'Roboto-Thin')),
-              )),
-              rowsOfCards,
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: RaisedButtonWidget(
-                    btnTxt: Constants.BECOME_A_MEMBER,
-                    onPressed: () => navigateTo(FlashCardPage()),
-                    color: Colors.purple[900]),
-              )
-            ],
-          ),
-        ));
+        // backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text(Constants.TODAY_WORD_LIST,
+              // textScaleFactor: 1.5,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30.0,
+                  decoration: TextDecoration.none,
+                  fontFamily: 'Roboto-Thin')),
+        ),
+        body: _pageView);
   }
 
-  FittedBox buildFittedBox() {
+  Column buildRowsOfCards() {
+    List<Widget> pairRows = new List<Widget>();
+    for (int i = 0; i < 5; i++) {
+      pairRows.add(buildFittedBox(i));
+      pairRows.add(Padding(padding: EdgeInsets.only(bottom: 20)));
+    }
+    return new Column(children: pairRows);
+  }
+
+  Center buildListPage() {
+    return Center(
+        child: Card(
+      margin: EdgeInsets.all(20),
+      child: ListView(
+        padding: EdgeInsets.only(
+          top: 50,
+        ),
+        children: <Widget>[
+          /* Center(
+              child: Padding(
+            padding: EdgeInsets.only(bottom: 40),
+            child: Text(Constants.TODAY_WORD_LIST,
+                // textScaleFactor: 1.5,
+                style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 30.0,
+                    decoration: TextDecoration.none,
+                    fontFamily: 'Roboto-Thin')),
+          )), */
+          buildRowsOfCards(),
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: RaisedButtonWidget(
+                btnTxt: Constants.BECOME_A_MEMBER,
+                onPressed: () =>
+                    navigateTo(FlashCardPage(flashCardsList: this._cards)),
+                color: Colors.purple[900]),
+          )
+        ],
+      ),
+    ));
+  }
+
+  FittedBox buildFittedBox(int index) {
+    int i = index * 2;
     return FittedBox(
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          createCard("Buch", "Book"),
-          createCard("Wasser", "Water"),
+          createCard(_cards.elementAt(i++)),
+          createCard(_cards.elementAt(i)),
         ],
       ),
     );
   }
 
-  Card createCard(String word, String translation) {
+  Card createCard(FlashCard flashCard) {
     return Card(
       color: Colors.white,
       child: Column(
@@ -111,7 +166,7 @@ class _CardsPage extends State<CardsPage> {
           Padding(
             padding: EdgeInsets.all(10),
             child: Text(
-              "$word",
+              flashCard.word,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
               // textDirection: TextDirection.rtl,
             ),

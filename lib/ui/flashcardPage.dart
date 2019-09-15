@@ -1,51 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:wortschatz_trainer/models/FlashCard.dart';
 
 class FlashCardPage extends StatefulWidget {
-  FlashCardPage({Key key}) : super(key: key);
+  final List<FlashCard> flashCardsList;
+  FlashCardPage({Key key, @required this.flashCardsList}) : super(key: key);
 
   _FlashCardPageState createState() => _FlashCardPageState();
 }
 
 class _FlashCardPageState extends State<FlashCardPage> {
+  PageView _pageView = PageView();
+  PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white,
-        child: FlipCard(
-          front: buildContainerCard(),
-          back: buildContainerCard(),
-        ));
+    _pageView = new PageView(
+      // children: <Widget>[
+      //   buildFlipCard(widget.flashCardsList.elementAt(0)),
+      //   buildFlipCard(widget.flashCardsList.elementAt(1))
+      // ],
+      children: buildAllFlipCards(),
+      controller: _pageController,
+    );
+
+    return Scaffold(body: _pageView);
   }
 
-  Padding buildContainerCard() {
+  List<FlipCard> buildAllFlipCards() {
+    List<FlipCard> allFlipCards = new List<FlipCard>();
+    for (var item in widget.flashCardsList) {
+      allFlipCards.add(buildFlipCard(item));
+    }
+
+    return allFlipCards;
+  }
+
+  FlipCard buildFlipCard(FlashCard item) {
+    return FlipCard(
+      front: buildContainerCard(item.word, false),
+      back: buildContainerCard(item.translation, true),
+    );
+  }
+
+  Padding buildContainerCard(String word, bool isBackSide) {
     return Padding(
-          padding: EdgeInsets.all(40),
-          child: Center(
-              child: Card(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                createCard("word", "translation"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    buildRaisedButton(true),
-                    buildRaisedButton(false)
-                  ],
-                )
-              ],
-            ),
-          )),
-        );
+      padding: EdgeInsets.all(40),
+      child: Center(
+          child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            createCard(word),
+            if (isBackSide)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  buildRaisedButton(true),
+                  buildRaisedButton(false)
+                ],
+              )
+          ],
+        ),
+      )),
+    );
   }
 
-  Card createCard(String word, String translation) {
+  Card createCard(String word) {
     return Card(
       color: Colors.yellow,
       child: Center(
@@ -71,5 +96,10 @@ class _FlashCardPageState extends State<FlashCardPage> {
       color: Colors.white,
       onPressed: () {},
     );
+  }
+
+  void nextPage() {
+    _pageController.nextPage(
+        duration: new Duration(milliseconds: 300), curve: Curves.linear);
   }
 }

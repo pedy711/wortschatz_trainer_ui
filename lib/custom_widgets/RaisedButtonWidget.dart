@@ -5,7 +5,7 @@ class RaisedButtonWidget extends RaisedButton {
       {Key key, @required this.btnTxt, @required this.onPressed, this.color})
       : super(
             key: key,
-            shape: const StadiumBorder(),
+            // shape: const StadiumBorder(),
             child: Padding(
               padding: EdgeInsets.only(top: 12, bottom: 12),
               child: Text(

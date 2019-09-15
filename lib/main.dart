@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wortschatz_trainer/locale/locales.dart';
 import 'package:wortschatz_trainer/ui/cardsPage.dart';
+import 'package:wortschatz_trainer/ui/flashcardPage.dart';
 import 'package:wortschatz_trainer/ui/homePage.dart';
 import 'package:wortschatz_trainer/ui/loginPage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

@@ -45,40 +45,40 @@ class _CardsPage extends State<CardsPage> {
     _context = context;
 
     var rowsOfCards = Column(
-                    children: <Widget>[
-                      buildFittedBox(),
-                      buildFittedBox(),
-                      buildFittedBox(),
-                      buildFittedBox(),
-                      buildFittedBox(),
-                    ],
-                  );
-        return Scaffold(
-            backgroundColor: Colors.white,
-            body: Center(
-              child: ListView(
-                padding: EdgeInsets.only(
-                  top: 50,
-                ),
-                children: <Widget>[
-                  Center(
-                      child: Padding(
-                    padding: EdgeInsets.only(bottom: 40),
-                    child: Text(Constants.TODAY_WORD_LIST,
-                        // textScaleFactor: 1.5,
-                        style: TextStyle(
-                            color: Colors.blueGrey,
-                            fontSize: 30.0,
-                            decoration: TextDecoration.none,
-                            fontFamily: 'Roboto-Thin')),
-                  )),
-                 rowsOfCards,
+      children: <Widget>[
+        buildFittedBox(),
+        buildFittedBox(),
+        buildFittedBox(),
+        buildFittedBox(),
+        buildFittedBox(),
+      ],
+    );
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: ListView(
+            padding: EdgeInsets.only(
+              top: 50,
+            ),
+            children: <Widget>[
+              Center(
+                  child: Padding(
+                padding: EdgeInsets.only(bottom: 40),
+                child: Text(Constants.TODAY_WORD_LIST,
+                    // textScaleFactor: 1.5,
+                    style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontSize: 30.0,
+                        decoration: TextDecoration.none,
+                        fontFamily: 'Roboto-Thin')),
+              )),
+              rowsOfCards,
               Padding(
                 padding: EdgeInsets.all(20),
                 child: RaisedButtonWidget(
                     btnTxt: Constants.BECOME_A_MEMBER,
                     onPressed: () => navigateTo(FlashCardPage()),
-                    color: Colors.red[800]),
+                    color: Colors.purple[900]),
               )
             ],
           ),
@@ -101,7 +101,7 @@ class _CardsPage extends State<CardsPage> {
 
   Card createCard(String word, String translation) {
     return Card(
-      color: Colors.yellow,
+      color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -116,64 +116,27 @@ class _CardsPage extends State<CardsPage> {
               // textDirection: TextDirection.rtl,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-              Transform.scale(
-                  scale: 2.0,
-                  child: Checkbox(
-                    value: false,
-                    onChanged: (bool value) {},
-                  )),
-            ],
-          )
+          generate8Checkboxes()
         ],
       ),
     );
+  }
+
+  Widget generate8Checkboxes(/* List<String> strings */) {
+    List<Transform> list = new List<Transform>();
+    for (var i = 0; i < 8; i++) {
+      list.add(Transform.scale(
+          scale: 2.0,
+          child: Checkbox(
+            value: false,
+            onChanged: (bool value) {},
+          )));
+    }
+    return new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: list);
   }
 
   Widget createBasicInfoSection(String word, String translation) {
@@ -270,7 +233,7 @@ class _CardsPage extends State<CardsPage> {
     );
   }
 
-    void navigateTo(Widget page) async {
+  void navigateTo(Widget page) async {
     // TODO: check whether the age entered is over 18 years.
     bool result = await Navigator.push(
         _context, MaterialPageRoute(builder: (context) => page));

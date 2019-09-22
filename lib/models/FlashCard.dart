@@ -9,15 +9,8 @@ class FlashCard {
   String word;
   String translation;
 
-  /* static final FlashCard _flashCard = FlashCard._internal();
-
-  FlashCard._internal();
-
-  factory FlashCard() {
-    return _flashCard;
-  } */
-
-  FlashCard(this.word, this.translation);
+  FlashCard (this.word, this.translation);
+  FlashCard.withId(this.id, this.word, this.translation);
 
   factory FlashCard.fromJson(Map<String, dynamic> json) => _$FlashCardFromJson(json);
 

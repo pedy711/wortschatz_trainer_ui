@@ -5,6 +5,7 @@ import 'package:wortschatz_trainer/shared/dbhelper.dart';
 import 'package:wortschatz_trainer/ui/cardsPage.dart';
 import 'package:wortschatz_trainer/ui/flashcardPage.dart';
 import 'package:wortschatz_trainer/ui/homePage.dart';
+import 'package:wortschatz_trainer/ui/landingPage.dart';
 import 'package:wortschatz_trainer/ui/loginPage.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wortschatz_trainer/locale/locales.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
         theme: _themeData,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: new CardsPage());
+        home: new LandingPage());
   }
 
   void navigateTo(Widget page) async {

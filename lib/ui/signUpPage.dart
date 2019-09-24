@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wortschatz_trainer/models/user.dart';
+import 'package:wortschatz_trainer/shared/dbhelper.dart';
+import 'package:wortschatz_trainer/ui/cardsPage.dart';
 import 'package:wortschatz_trainer/ui/introductionPage.dart';
 
 //import 'package:carousel_slider/carousel_slider.dart';
@@ -219,11 +221,14 @@ class _SignUpPage extends State<SignUpPage> {
         emailController.text, passwordController.text);
 
     HttpHelper http = HttpHelper();
-    http.post(json.encode(user.toJson()), Constants.REGISTER_USER)
+    http
+        .post(json.encode(user.toJson()), Constants.REGISTER_USER)
         .then((response) {
       if (response.statusCode == 201) {
         // registration accepted: go to next
-        navigateToPage(IntroductionPage());
+        // response.user;
+        saveUserToLocalDb(User.fromJson(json.decode(response.body)));
+        navigateToPage(CardsPage());
       } else {
         // user already exists: go to sign in page
         print(response.statusCode);
@@ -235,5 +240,16 @@ class _SignUpPage extends State<SignUpPage> {
   void navigateToPage(Widget page) async {
     bool result = await Navigator.push(
         _context, MaterialPageRoute(builder: (context) => page));
+  }
+
+  void saveUserToLocalDb(User user) {
+    DbHelper helper = DbHelper();
+    helper
+        .initializeDb()
+        .then((result) => helper.insertUser(user).then((result) => () {
+              if (result > 0) {
+                navigateToPage(LoginPage());
+              } else {}
+            }));
   }
 }

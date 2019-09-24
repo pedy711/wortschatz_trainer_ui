@@ -7,10 +7,12 @@ import 'package:wortschatz_trainer/shared/constants.dart';
 
 class DbHelper {
   static final DbHelper _dbHelper = DbHelper._internal();
-  String tblUser = "user";
-  String colId = "id";
-  String colEmail = "email";
-  String colPassword = "password";
+  String tblUser      = "user";
+  String colId        = "id";
+  String colEmail     = "email";
+  String colPassword  = "password";
+  String colEnabled   = "enabled";
+  String colCreatedOn = "createdOn";
 
   DbHelper._internal();
 

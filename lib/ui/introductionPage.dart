@@ -818,12 +818,12 @@ class _IntroductionPage extends State<IntroductionPage> {
     var currentLocation = <String, double>{};
 
     User user = User();
-    user.firstName = firstNameController.text;
+ /*    user.firstName = firstNameController.text;
     user.gender = _genderSelection;
     user.birthday = new DateTime(_year, _month, _date);
     user.location = new CustomLocation(
         _currentLocation["latitude"], _currentLocation["longitude"]);
-    user.summary = summaryTextController.text;
+    user.summary = summaryTextController.text; */
 
 
     registerUser(user);

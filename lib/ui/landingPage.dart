@@ -9,7 +9,6 @@ import 'package:wortschatz_trainer/shared/constants.dart';
 import 'package:wortschatz_trainer/shared/dbhelper.dart';
 import 'package:wortschatz_trainer/models/globals.dart' as globals;
 
-
 BuildContext _context;
 
 class LandingPage extends StatefulWidget {
@@ -19,21 +18,28 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPage extends State<LandingPage> {
   @override
-  Widget build(BuildContext context) {
-    _context = context;
-    return Scaffold(
-        body: LogoImageWidget()
-    );
+  void initState() {
+    super.initState();
+    // TODO initial state stuff
+    
+    new Future.delayed(const Duration(seconds: 4),
+    () => createOrRetrieveUser());
   }
 
-  void isAnewUser() {
+  @override
+  Widget build(BuildContext context) {
+    _context = context;
+    return Scaffold(body: LogoImageWidget());
+  }
+
+  void createOrRetrieveUser() {
     List<User> users = List<User>();
     DbHelper helper = DbHelper();
     helper
         .initializeDb()
         .then((result) => helper.getUsers().then((result) => users = result));
 
-    if (!users.isEmpty) {
+    if (users.isNotEmpty) {
       navigateTo(CardsPage());
     } else {
       navigateTo(HomePage());

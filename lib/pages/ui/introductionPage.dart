@@ -3,13 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:wortschatz_trainer/models/basic/customLocation.dart';
-import 'package:wortschatz_trainer/models/communication/dataSourceResponse.dart';
-import 'package:wortschatz_trainer/models/communication/dsRequest.dart';
 import 'package:wortschatz_trainer/models/user.dart';
-import 'package:wortschatz_trainer/ui/landingPage.dart';
-import 'package:wortschatz_trainer/ui/loginPage.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
 import 'package:intl/intl.dart' as intl;
 import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 import 'package:location/location.dart';
@@ -20,6 +14,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:image/image.dart' as Img;
 import 'dart:math' as Math;
 import 'package:http/http.dart' as http;
+import 'package:wortschatz_trainer/services/constants.dart';
+
+import 'landingPage.dart';
 
 
 BuildContext _context;

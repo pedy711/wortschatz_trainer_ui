@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:wortschatz_trainer/models/user.dart';
-import 'package:wortschatz_trainer/shared/dbhelper.dart';
-import 'package:wortschatz_trainer/ui/cardsPage.dart';
-import 'package:wortschatz_trainer/ui/introductionPage.dart';
+import 'dart:convert';
 
-//import 'package:carousel_slider/carousel_slider.dart';
-import 'package:wortschatz_trainer/ui/loginPage.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
-import 'package:wortschatz_trainer/shared/httphelper.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'dart:convert';
 import 'package:validate/validate.dart';
+import 'package:wortschatz_trainer/models/user.dart';
+import 'package:wortschatz_trainer/pages/ui/cardsPage.dart';
+import 'package:wortschatz_trainer/services/constants.dart';
+import 'package:wortschatz_trainer/services/dbhelper.dart';
+import 'package:wortschatz_trainer/services/httphelper.dart';
+
+import 'loginPage.dart';
 
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();

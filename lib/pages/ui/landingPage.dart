@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wortschatz_trainer/models/user.dart';
-import 'package:wortschatz_trainer/ui/cardsPage.dart';
-import 'package:wortschatz_trainer/ui/homePage.dart';
-import 'package:wortschatz_trainer/ui/loginPage.dart';
-import 'package:wortschatz_trainer/ui/loginPage.dart' as prefix0;
-import 'package:wortschatz_trainer/ui/signUpPage.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
-import 'package:wortschatz_trainer/shared/dbhelper.dart';
-import 'package:wortschatz_trainer/models/globals.dart' as globals;
+import 'package:wortschatz_trainer/services/dbhelper.dart';
+
+import 'cardsPage.dart';
+import 'homePage.dart';
 
 BuildContext _context;
 

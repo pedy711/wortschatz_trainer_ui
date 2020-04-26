@@ -2,13 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:wortschatz_trainer/custom_widgets/RaisedButtonWidget.dart';
 import 'package:wortschatz_trainer/models/FlashCard.dart';
 import 'package:wortschatz_trainer/models/communication/dataSourceResponse.dart';
 import 'package:wortschatz_trainer/models/communication/dsRequest.dart';
 import 'package:wortschatz_trainer/models/user.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
-import 'package:wortschatz_trainer/ui/flashcardPage.dart';
+import 'package:wortschatz_trainer/pages/custom_widgets/RaisedButtonWidget.dart';
+import 'package:wortschatz_trainer/services/constants.dart';
+
+import 'flashcardPage.dart';
 
 BuildContext _context;
 const jasonCodec = const JsonCodec();
@@ -129,7 +130,7 @@ class _CardsPage extends State<CardsPage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: RaisedButtonWidget(
-                btnTxt: Constants.BECOME_A_MEMBER,
+                btnTxt: Constants.START,
                 onPressed: () =>
                     navigateTo(FlashCardPage(flashCardsList: this._cards)),
                 color: Colors.purple[900]),

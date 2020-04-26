@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wortschatz_trainer/custom_widgets/RaisedButtonWidget.dart';
-import 'package:wortschatz_trainer/custom_widgets/TextBoxWidget.dart';
-import 'package:wortschatz_trainer/models/user.dart';
-import 'package:wortschatz_trainer/ui/introductionPage.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
-import 'package:wortschatz_trainer/shared/dbhelper.dart';
+import 'package:wortschatz_trainer/pages/custom_widgets/RaisedButtonWidget.dart';
+import 'package:wortschatz_trainer/pages/custom_widgets/TextBoxWidget.dart';
+import 'package:wortschatz_trainer/services/constants.dart';
 
 import 'cardsPage.dart';
 

@@ -1,8 +1,9 @@
 import 'dart:convert';
 
-import 'package:wortschatz_trainer/shared/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+
+import 'constants.dart';
 
 class HttpHelper {
   static final HttpHelper _httpHelper = HttpHelper._internal();

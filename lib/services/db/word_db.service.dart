@@ -3,9 +3,10 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:wortschatz_trainer/models/user.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
 
-class DbHelper {
+import 'constants.dart';
+
+class WordDbService {
   static final DbHelper _dbHelper = DbHelper._internal();
   String tblUser      = "user";
   String colId        = "id";

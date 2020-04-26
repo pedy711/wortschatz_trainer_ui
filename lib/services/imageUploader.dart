@@ -1,8 +1,9 @@
 import 'dart:io';
 import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
-import 'package:wortschatz_trainer/shared/constants.dart';
 import 'package:path/path.dart';
+
+import 'constants.dart';
 
 
 class ImageUploader{

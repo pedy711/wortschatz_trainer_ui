@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wortschatz_trainer/custom_widgets/RaisedButtonWidget.dart';
-import 'package:wortschatz_trainer/ui/loginPage.dart';
-import 'package:wortschatz_trainer/ui/signUpPage.dart';
-import 'package:wortschatz_trainer/shared/constants.dart';
+import 'package:wortschatz_trainer/pages/custom_widgets/RaisedButtonWidget.dart';
+import 'package:wortschatz_trainer/services/constants.dart';
+
+import 'loginPage.dart';
+import 'signUpPage.dart';
 
 class HomePage extends StatelessWidget {
   final double roundedCorner = 10;

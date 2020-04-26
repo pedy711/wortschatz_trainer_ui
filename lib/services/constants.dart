@@ -49,6 +49,8 @@ class Constants{
   static final String SHORT_SUMMARY = "خودت رو به طور خلاصه معرفی کن";
   static final String SHORT_SUMMARY_Label = "برای مثال، بهترین دوستت چه طور توصیفت می کنه؟";
 
+  // words overview page
+  static final String START = "Start";
 
 
 

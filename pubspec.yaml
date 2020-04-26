@@ -25,7 +25,7 @@ dependencies:
   path_provider: any
   json_annotation: ^2.0.0
   flutter_cupertino_date_picker: ^0.3.0
-  datetime_picker_formfield: ^0.1.7
+  datetime_picker_formfield: ^1.0.0
   location: ^1.4.1
   country_code_picker: ^1.1.1
   image_picker: ^0.4.10

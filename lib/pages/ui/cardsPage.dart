@@ -130,7 +130,7 @@ class _CardsPage extends State<CardsPage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: RaisedButtonWidget(
-                btnTxt: Constants.START,
+                btnTxt: Constants.START_TO_READ,
                 onPressed: () =>
                     navigateTo(FlashCardPage(flashCardsList: this._cards)),
                 color: Colors.purple[900]),

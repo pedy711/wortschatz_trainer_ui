@@ -94,7 +94,7 @@ class _FlashCardPageState extends State<FlashCardPage> {
       ),
       textColor: Colors.white,
       color: Colors.white,
-      onPressed: () {},
+      onPressed: () {nextPage();},
     );
   }
 

@@ -17,7 +17,7 @@ class Constants{
   static final int    APP_VERSION = 1;
   static final String GET_STARTED_BTN = "Let's Go";
   static final String BECOME_A_MEMBER = "Mit email anmelden";
-  // it's
+  // it's Pedram now
   static final String START_TO_READ = "START";
   static final String EMAIL_TEXT = "Email";
   static final String PASSWORD_TEXT = "Password";
